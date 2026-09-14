@@ -66,18 +66,74 @@ class List {
             }
         }
 
+        void pop_back() {
+            if(head==NULL) {
+                cout << "LL is empty\n";
+                return;
+            }
+            Node* temp=head;
+
+            while(temp->next!=tail) {
+                temp=temp->next;
+            }
+
+            temp->next=NULL;
+            delete tail;
+            tail=temp; 
+        }
+
+        void insert(int val, int pos) {
+            if(pos<0) {
+                cout << "Invalid position\n";
+                return;
+            }
+            if(pos==0) {
+                push_front(val);
+                return;
+            }
+            Node* temp=head;
+            for(int i=0; i<pos-1; i++) {
+                if(temp==NULL) {
+                    cout << "Invalid position\n";
+                    return;
+                }
+                temp=temp->next;
+            }
+
+            Node* newNode = new Node(val);
+            newNode->next = temp->next;
+            temp->next=newNode;
+        }
+
+        int search(int key) {
+            Node* temp=head;
+
+            int idx=0;
+
+            while(temp!=NULL) {
+                if(temp->data == key) {
+                    return idx;
+                }
+
+                temp=temp->next;
+                idx++;
+            }
+            return -1;
+        }
+
 };
 
 int main () {
     List ll;
 
+    ll.push_front(3);
+    ll.push_front(2);
     ll.push_front(1);
-    ll.push_front(4);
-    ll.push_front(6);
 
-    ll.push_back(8);
+    ll.insert(4, 1);
+    // ll.push_back(8);
 
-    ll.pop_front();
+    // ll.pop_front();
 
     ll.print();
 }
