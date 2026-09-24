@@ -12,7 +12,7 @@ void combSort(int arr[], int n) {
     int gap=n;
     bool swapped=true;
     int i=1;
-    while(gap!=1 || swapped) {
+    while(gap!=1 || !swapped) {
         if (gap>1) {
             gap/=1.3;
 
