@@ -31,6 +31,8 @@ public:
     // Function to remove a song from the playlist at a
     void removeSong(int position)
     { 
+        if (head == NULL) return;
+
         if (position<1) {
             return;
         } 
@@ -40,11 +42,13 @@ public:
             count++;
             temp=temp->next;
         } while(temp!=head);
+
         if (position>count) return;
+        
         if (count==1) {
+            delete head;
             head=NULL;
             tail=NULL;
-            delete head;
         }
         else if (position==1) {
             
